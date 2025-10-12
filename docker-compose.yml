@@ -18,12 +18,12 @@ services:
 
   mysql:
     build:
-      context: /docker/mysql
+      context: ./docker/mysql
       dockerfile: Dockerfile
     volumes:
       - mysql:/var/lib/mysql
     env_file:
-      - /config/mysql/env.yml
+      - ./config/mysql/env.yml
     restart: unless-stopped
 
   phpmyadmin:
