@@ -8,6 +8,11 @@ RUN a2enmod rewrite
 
 COPY /config/apache/000-default.conf /etc/apache2/sites-available/000-default.conf
 
+ARG HOST_UID=1000
+ARG HOST_GID=1000
+RUN usermod -u ${HOST_UID} www-data && \
+    groupmod -g ${HOST_GID} www-data
+
 RUN mkdir -p /var/sessions  \
     && chown www-data:www-data /var/sessions  \
     && chmod 775 /var/sessions

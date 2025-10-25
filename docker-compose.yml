@@ -5,10 +5,13 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        HOST_UID: 1000
+        HOST_GID: 1000
     links:
       - mysql
     ports:
-      - "5010:80"
+      - "8001:80"
     volumes:
       - ./src/:/app/
     privileged: true
@@ -31,7 +34,7 @@ services:
     links:
       - mysql
     ports:
-      - "5011:80"
+      - "8002:80"
     environment:
       - PMA_ARBITRARY=1
       - PMA_HOSTS=mysql
